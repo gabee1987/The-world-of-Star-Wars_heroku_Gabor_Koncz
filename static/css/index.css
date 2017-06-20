@@ -33,6 +33,7 @@ Page header
     -webkit-font-smoothing: antialiased;
     background-image: url('/static/images/header_bg.jpeg');
     background-position-x: center;
+    background-attachment: fixed;
     margin: -20px auto;
     padding: 1.5%;
     box-sizing: border-box;
@@ -82,5 +83,23 @@ Body
 
 #page-title p {
     font-size: 1.8rem;
+    color: #ddd;
+}
+
+
+
+/* 
+==========================================================================
+Table
+==========================================================================
+*/
+
+.table-responsive th {
+    background-color: #424242;
+    font-size: 1.5em;
+    color: #ddd;
+}
+
+.table-responsive td {
     color: #ddd;
 }
