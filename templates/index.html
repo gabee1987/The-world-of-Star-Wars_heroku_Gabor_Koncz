@@ -3,17 +3,27 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta property="og:description"
+            content="A little web application which shows data about the Star Wars universe, store visitor preferences with cookies and handle user login with sessions.">
+        <meta name="apple-mobile-web-app-title" content="Star Wars">
+        <link rel="icon" href="/static/images/favicon.ico">
+
+        <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
             integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
             crossorigin="anonymous">
+        <!-- Own CSS -->
         <link rel="stylesheet" href="/static/css/index.css">
-        <link rel="stylesheet" type="text/css"
-            href="https://fonts.googleapis.com/css?family=Indie+Flower|Roboto:100">
+        <link rel="stylesheet" href="/static/css/login.css">
+        <!-- Google fonts -->
+        <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+        <!-- JQuery -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script
             src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
             integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
             crossorigin="anonymous"></script>
+        <!-- Bootstrap Javascript -->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
             integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
             crossorigin="anonymous"></script>
@@ -21,10 +31,37 @@
     </head>
     <body>
 
-        <div class="container"> 
-        <div id="page-title">
-            <h1>Star Wars universe planets</h1>
+        <div class="jumbotron">
+            <div id="sw-logo">
+                <img src="/static/images/sw_logo.png">
+            </div>
         </div>
+            <!-- Navbar -->
+            <nav class="navbar navbar-inverse">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="index.html">Star Wars</a>
+                </div>
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="index.html">Home</a></li>
+                    <li><a href="#">Page 1</a></li>
+                    <li><a href="#">Page 2</a></li>
+                    <li><a href="#">Page 3</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                    <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                </ul>
+            </div>
+            </nav>
+            
+        <div class="container-fluid">
+            
+            <div id="page-title">
+                <h2>Star Wars universe planets</h2>      
+                <p>A little web application which shows data about the Star Wars universe, store visitor preferences with cookies and handle user login with sessions.</p>
+            </div>
+            
         </div>
 
     </body>
