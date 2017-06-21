@@ -17,7 +17,8 @@ def index():
                     'Climate',
                     'Terrain',
                     'Surface water percentage',
-                    'Population'
+                    'Population',
+                    'Residents'
     ]
     planet_list = []
     return render_template('index.html', table_headers=table_headers)
