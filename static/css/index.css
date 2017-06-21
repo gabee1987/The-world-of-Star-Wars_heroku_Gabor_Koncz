@@ -87,6 +87,28 @@ Body
 }
 
 
+/* 
+==========================================================================
+Buttons
+==========================================================================
+*/
+
+.btn-primary {
+    background-color: #242424;
+    border-color: #262626;
+    color: #ddd;
+}
+
+.btn-primary:hover {
+    background-color: #060606;
+    border-color: #060606;
+}
+
+.btn-primary:active {
+    background-color: #2a2a2a;
+    border-color: #2a2a2a;
+}
+
 
 /* 
 ==========================================================================
@@ -94,12 +116,120 @@ Table
 ==========================================================================
 */
 
-.table-responsive th {
-    background-color: #424242;
+.table th {
+    background-color: #1b1b1b;
     font-size: 1.5em;
     color: #ddd;
 }
 
-.table-responsive td {
+.table td {
     color: #ddd;
+    border-bottom: 0.5px solid #2a2a2a;
+}
+
+.table-hover tbody tr:hover td {
+    background-color: #1e1e1e;
+}
+
+
+
+
+/* 
+==========================================================================
+Footer
+==========================================================================
+*/
+
+.footer {
+	background: #1a1a1a;
+    background-image: url('/static/images/footer_darth_vader.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+	height: auto;
+	padding-bottom: 30px;
+	position: relative;
+	width: 100%;
+	border-top: 1px solid #2a2a2a;
+}
+.footer p {
+	margin: 0;
+}
+.footer img {
+	max-width: 100%;
+}
+.footer h3 {
+	color: #ddd;
+	font-size: 18px;
+	font-weight: 600;
+	line-height: 27px;
+	padding: 40px 0 10px;
+	text-transform: uppercase;
+}
+.footer ul {
+	font-size: 13px;
+	list-style-type: none;
+	margin-left: 0;
+	padding-left: 0;
+	margin-top: 15px;
+	color: #ddd;
+}
+.footer ul li a {
+	padding: 0 0 5px 0;
+	display: block;
+}
+.footer a {
+	color: #858a8d;
+}
+
+/*Social buttons*/
+.social li {
+	background: none repeat scroll 0 0 #2a2a2a;
+	border: 2px solid #2a2a2a;
+	-webkit-border-radius: 50%;
+	-moz-border-radius: 50%;
+	-o-border-radius: 50%;
+	-ms-border-radius: 50%;
+	border-radius: 50%;
+	float: left;
+	height: 36px;
+	line-height: 36px;
+	margin: 0 8px 0 0;
+	padding: 0;
+	text-align: center;
+	width: 36px;
+	transition: all 0.5s ease 0s;
+	-moz-transition: all 0.5s ease 0s;
+	-webkit-transition: all 0.5s ease 0s;
+	-ms-transition: all 0.5s ease 0s;
+	-o-transition: all 0.5s ease 0s;
+}
+
+.social li:hover {
+	transform: scale(1.15) rotate(360deg);
+	-webkit-transform: scale(1.1) rotate(360deg);
+	-moz-transform: scale(1.1) rotate(360deg);
+	-ms-transform: scale(1.1) rotate(360deg);
+	-o-transform: scale(1.1) rotate(360deg);
+}
+.social li a {
+	color: #EDEFF1;
+}
+.social li:hover {
+	border: 2px solid #858a8d;
+	background: #858a8d;
+}
+.social li a i {
+	font-size: 16px;
+	margin: 0 0 0 5px;
+	color: #EDEFF1 !important;
+}
+
+.footer-bottom {
+	background: #1a1a1a;
+	border-top: 1px solid #2a2a2a;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+.footer-bottom p.pull-left {
+	padding-top: 6px;
 }
