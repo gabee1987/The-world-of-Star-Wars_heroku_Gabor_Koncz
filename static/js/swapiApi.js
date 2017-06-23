@@ -20,7 +20,7 @@ function main() {
     });
 
     //modal trigger
-    $('#residents').on('show.bs.modal', function (event) {
+    $('#popUpModal').on('show.bs.modal', function (event) {
         
         var button = $(event.relatedTarget);
         var planetName = button.data('planetname');
@@ -101,7 +101,7 @@ function main() {
 
     });
 
-    $('#residents').on('hidden.bs.modal', function () {
+    $('#popUpModal').on('hidden.bs.modal', function () {
         $(this).find('.modal-body').text('');
 })
 }
@@ -233,7 +233,7 @@ function fillTable(swapiPlanets) {
         residentsLink.setAttribute('class', 'btn btn-primary residents');
         residentsLink.setAttribute('data-planetName', swapiPlanets[i]['name']);
         residentsLink.setAttribute('data-toggle', 'modal');
-        residentsLink.setAttribute('data-target', '#residents');
+        residentsLink.setAttribute('data-target', '#popUpModal');
 
         residentsCell.appendChild(residentsLink);
         

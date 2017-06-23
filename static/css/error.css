@@ -1,0 +1,38 @@
+/* error page CSS for The-world-of-Star-Wars assignment 
+    by Gabor Koncz
+*/
+
+
+/* 
+==========================================================================
+Globals
+==========================================================================
+*/
+
+html {
+    margin: 0;
+}
+
+body {
+    margin: 0;
+    font-family: 'Raleway', sans-serif;
+    background-color: #1b1b1b; 
+    background-image: url('/static/images/404.jpg');
+    width: 80%;
+    background-position-x: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    -webkit-font-smoothing: antialiased;
+    padding: 1.5%;
+    box-sizing: border-box;
+}
+
+
+.error {
+    display: block;
+    color: #aaa;
+    text-align: center;
+    height: auto;
+    overflow: hidden;
+    margin: auto;
+}

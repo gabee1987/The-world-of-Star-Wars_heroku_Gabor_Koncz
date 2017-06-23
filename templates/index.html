@@ -30,12 +30,13 @@
         <!-- Own Javascript -->
         <script src="/static/js/swapiApi.js" defer></script>
         <script src="/static/js/main.js" defer></script>
+        <script src="/static/js/login.js" defer></script>
         <title>The world of Star Wars</title>
     </head>
     <body>
 
         <!-- Modal for residents -->
-        <div class="modal fade" id="residents" tabindex="-1" role="dialog" aria-labelledby="residents">
+        <div class="modal fade" id="popUpModal" tabindex="-1" role="dialog" aria-labelledby="popUpModal">
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -71,9 +72,10 @@
                     <li><a href="#">Page 2</a></li>
                     <li><a href="#">Page 3</a></li>
                 </ul>
+                <p> Logged in as : {{ user_username }} </p>
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-                    <li><a href="#" id="myBtn"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                    <li><a href="/register"><span class="glyphicon glyphicon-user"></span> Sign Up </a></li>
+                    <li><a href="/login" id="myBtn"><span class="glyphicon glyphicon-log-in"></span> Login </a></li>
                 </ul>
             </nav>
             
