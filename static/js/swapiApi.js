@@ -3,20 +3,10 @@
 
 
 function main() {
-    getPlanets();
+    displayPlanets();
     var nextPageButton = document.getElementById('nextPage');
     var previousPageButton = document.getElementById('previousPage');
     var table = document.getElementById('planetsTable');
-
-    var swapiPage = previousPageButton.getAttribute('data-pageNumber');
-    if (swapiPage == 1) {
-        document.getElementById('previousPage').style.visibility='hidden';
-    }
-
-    var buttonText = previousPageButton.textContent;
-        if (previousPageButton.textContent == 0) {
-            previousPageButton.setClickable(false);
-        }
 
     nextPageButton.addEventListener('click', function(event) { // Creates click event to load next page
         table.innerHTML = '';
@@ -116,7 +106,7 @@ function main() {
 })
 }
 
-function getPlanets() {
+function displayPlanets() {
     var reqSwapi = new XMLHttpRequest();
     var swapiPage = 1;      // Default planets page number to load
     var UrlHost = 'https://swapi.co/api/planets/?page=' + swapiPage;
@@ -167,8 +157,11 @@ function pagePrev() {
     var nextPageButton = document.getElementById('nextPage');
     var swapiPage = previousPageButton.getAttribute('data-pageNumber');
 
-    if (swapiPage > 1) {
+    while (swapiPage > 1) {
         swapiPage--;
+        previousPageButton.setAttribute('data-pageNumber', swapiPage);    
+        nextPageButton.setAttribute('data-pageNumber', swapiPage);
+
         var UrlHost = 'https://swapi.co/api/planets/?page=' + swapiPage;
         reqSwapi.open('GET', UrlHost, true);
         reqSwapi.addEventListener('load', function() {
@@ -177,8 +170,6 @@ function pagePrev() {
             var swapiPlanets = JSON.parse(reqSwapi.responseText);
                 swapiPlanets = swapiPlanets['results']
                 fillTable(swapiPlanets);
-                previousPageButton.setAttribute('data-pageNumber', swapiPage);    
-                nextPageButton.setAttribute('data-pageNumber', swapiPage);
 
         } else {
             alert('Error in network request: ' + reqSwapi.statusText);
