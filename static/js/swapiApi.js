@@ -7,6 +7,17 @@ function main() {
     var nextPageButton = document.getElementById('nextPage');
     var previousPageButton = document.getElementById('previousPage');
     var table = document.getElementById('planetsTable');
+
+    var swapiPage = previousPageButton.getAttribute('data-pageNumber');
+    if (swapiPage == 1) {
+        document.getElementById('previousPage').style.visibility='hidden';
+    }
+
+    var buttonText = previousPageButton.textContent;
+        if (previousPageButton.textContent == 0) {
+            previousPageButton.setClickable(false);
+        }
+
     nextPageButton.addEventListener('click', function(event) { // Creates click event to load next page
         table.innerHTML = '';
         pageNext();
@@ -17,7 +28,92 @@ function main() {
         pagePrev();
         event.preventDefault();
     });
-    
+
+    //modal trigger
+    $('#residents').on('show.bs.modal', function (event) {
+        
+        var button = $(event.relatedTarget);
+        var planetName = button.data('planetname');
+        var residents = button.data('residents');
+        var modal = $(this);
+        var swapiResidentsLinks = residents.split(",");
+
+        modal.find('.modal-title').text('Residents of ' + planetName)
+        modal.find('.modal-body').append('<table class="table table-hover table-responsive">' +
+                                        '<thead>' +
+                                        '<tr>' +
+                                        '<th> Name </th>' +
+                                        '<th> Height </th>' +
+                                        '<th> Mass </th>' +
+                                        '<th> Hair color </th>' +
+                                        '<th> Skin color </th>' +
+                                        '<th> Eye color </th>' +
+                                        '<th> Birth year </th>' +
+                                        '<th> Gender </th>' +
+                                        '</tr>' +
+                                        '</thead>' +
+                                        '<tbody id="residentsTable">' +
+                                        '</tbody' +
+                                        '</table>');
+        for (let i = 0; i < swapiResidentsLinks.length; i++) {
+            $.ajax({
+                type: 'GET',
+                url: swapiResidentsLinks[i],
+                dataType: 'json',
+                success: function(response) {
+                    displayResidents(response);
+                    },
+                error: function() {
+                    alert('Error in network request!');
+                } 
+            });
+        }
+
+            function displayResidents(residents) {
+                var name = residents['name'];
+                var height = residents['height'];
+                var mass = residents['mass'];
+                var hair_color = residents['hair_color'];
+                var skin_color = residents['skin_color'];
+                var eye_color = residents['eye_color'];
+                var birth_year = residents['birth_year'];
+                var gender = residents['gender'];
+                $('#residentsTable').append('<tr>' +
+                                            '<td>' + name + '</td>' +
+                                            '<td>' + heightFormat(height) + '</td>' +
+                                            '<td>' + massFormat(mass) + '</td>' +
+                                            '<td>' + hair_color + '</td>' +
+                                            '<td>' + skin_color + '</td>' +
+                                            '<td>' + eye_color + '</td>' +
+                                            '<td>' + birth_year + '</td>' +
+                                            '<td>' + gender + '</td>' +
+                                            '</tr>')
+
+
+                function heightFormat(height) {
+                    var formattedHeight = height / 100;
+                    return formattedHeight + ' m';
+            }
+
+                function massFormat(mass) {
+                    if (mass == 'unknown') {
+                        return mass;
+                    } else {
+                        return mass + ' kg';
+                    }
+                }
+            }
+
+
+            
+
+
+
+    });
+
+    $('#residents').on('hidden.bs.modal', function () {
+        $(this).find('.modal-body').text('');
+})
 }
 
 function getPlanets() {
@@ -28,8 +124,8 @@ function getPlanets() {
         reqSwapi.addEventListener('load', function() {
         if (reqSwapi.status >= 200 && reqSwapi.status < 400) {
             var swapiPlanets = JSON.parse(reqSwapi.responseText);
-            swapiPlanets = swapiPlanets['results']
-            fillTable(swapiPlanets);
+                swapiPlanets = swapiPlanets['results']
+                fillTable(swapiPlanets);
         } else {
             alert('Error in network request: ' + reqSwapi.statusText);
             }
@@ -55,6 +151,7 @@ function pageNext() {
             fillTable(swapiPlanets);
             nextPageButton.setAttribute('data-pageNumber', swapiPage);
             previousPageButton.setAttribute('data-pageNumber', swapiPage);
+            previousPageButton.style.visibility = 'visible';
 
         } else {
             alert('Error in network request: ' + reqSwapi.statusText);
@@ -78,10 +175,10 @@ function pagePrev() {
 
         if (reqSwapi.status >= 200 && reqSwapi.status < 400) {
             var swapiPlanets = JSON.parse(reqSwapi.responseText);
-            swapiPlanets = swapiPlanets['results']
-            fillTable(swapiPlanets);
-            previousPageButton.setAttribute('data-pageNumber', swapiPage);    
-            nextPageButton.setAttribute('data-pageNumber', swapiPage);
+                swapiPlanets = swapiPlanets['results']
+                fillTable(swapiPlanets);
+                previousPageButton.setAttribute('data-pageNumber', swapiPage);    
+                nextPageButton.setAttribute('data-pageNumber', swapiPage);
 
         } else {
             alert('Error in network request: ' + reqSwapi.statusText);
@@ -96,7 +193,7 @@ function fillTable(swapiPlanets) {
     var table = document.getElementById('planetsTable');
     var swapiPlanetsLength = swapiPlanets.length;
 
-    for (var i = 0; i < swapiPlanetsLength; i++) {
+    for (let i = 0; i < swapiPlanetsLength; i++) {
         var row = document.createElement('tr');
         table.appendChild(row);
 
@@ -131,12 +228,32 @@ function fillTable(swapiPlanets) {
             }       
 
         nameCell.innerHTML = name;
-        diameterCell.innerHTML = diameter;
+        diameterCell.innerHTML = formatDiameter(diameter);
         climateCell.innerHTML = climate;
         terrainCell.innerHTML = terrain;
         surfaceWaterCell.innerHTML = surfaceWater;
-        populationCell.innerHTML = population;
-        residentsCell.innerHTML = '<a href="'+ swapiPlanets[i]['residents'] +'">' + residents + '</a>';
+        populationCell.innerHTML = formatPopulation(population);
+
+        // Creates residents buttons
+        var residentsLink = document.createElement('button');
+        residentsLink.setAttribute('type', 'button');
+        residentsLink.innerText = residents;
+        residentsLink.setAttribute('data-residents', swapiPlanets[i]['residents']);
+        residentsLink.setAttribute('class', 'btn btn-primary residents');
+        residentsLink.setAttribute('data-planetName', swapiPlanets[i]['name']);
+        residentsLink.setAttribute('data-toggle', 'modal');
+        residentsLink.setAttribute('data-target', '#residents');
+
+        residentsCell.appendChild(residentsLink);
+        
+    }
+
+    function formatDiameter(diameter) {
+        return diameter / 1000 + ' km';
+    }
+
+    function formatPopulation(population) {
+        return population.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,") + ' people';
     }
 
 }

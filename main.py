@@ -13,7 +13,7 @@ def index():
     '''
     table_headers = [
                     'Name',
-                    'Diameter in km',
+                    'Diameter',
                     'Climate',
                     'Terrain',
                     'Surface water percentage',

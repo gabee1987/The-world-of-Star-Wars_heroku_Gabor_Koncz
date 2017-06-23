@@ -93,20 +93,26 @@ Buttons
 ==========================================================================
 */
 
-.btn-primary {
+.btn-primary, .btn-default {
     background-color: #242424;
     border-color: #262626;
     color: #ddd;
 }
 
-.btn-primary:hover {
+.btn-primary:hover, .btn-default:hover {
     background-color: #060606;
     border-color: #060606;
+	color: #ddd;
 }
 
-.btn-primary:active, .btn-primary:focus, .btn-primary:visited {
+.btn-primary:active, .btn-primary:focus, .btn-primary:visited, .btn-default:active, .btn-default:focus, .btn-default:visited {
     background-color: #2a2a2a !important;
     border-color: #2a2a2a !important; 
+}
+
+.residents {
+	background-color: transparent;
+	border-color: transparent;
 }
 
  
@@ -119,9 +125,15 @@ Table
 */
 
 .table th {
+	border-top: transparent;
     background-color: #1b1b1b;
     font-size: 1.5em;
+	font-weight: 400;
     color: #ddd;
+}
+
+.table thead {
+	border-top: transparent;
 }
 
 .table td {
@@ -133,6 +145,41 @@ Table
     background-color: #1e1e1e;
 }
 
+.residents {
+	text-decoration:underline;
+}
+
+
+
+/* 
+==========================================================================
+Modal
+==========================================================================
+*/
+
+.modal-body {
+	border-top: transparent;
+	padding: 0.5px;
+	background-color: #1b1b1b;
+}
+
+.modal-header {
+	background-color: #2a2a2a;
+	border-bottom: transparent;
+}
+
+.modal-footer {
+	background-color: #2a2a2a;
+	border-top: transparent;
+}
+
+.modal-title {
+	border: transparent;
+}
+
+#residentsTable {
+	background-color: #EEEEEE;
+}
 
 
 
