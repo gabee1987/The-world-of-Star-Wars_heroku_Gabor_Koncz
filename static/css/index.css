@@ -46,9 +46,14 @@ Page header
     max-width: 350px;
     height: 100%;
     max-height: 130px;
-    margin: 50px auto 0;
+    margin: 50px auto;
     box-sizing: border-box;
     background-size: contain;
+}
+
+#jumbotron-fadOut {
+	background-color:#000;
+	opacity:0.0;
 }
 
 /* 
@@ -59,10 +64,39 @@ Navbar
 
 
 .navbar {
+	-webkit-font-smoothing: antialiased;
     border-radius: 0;
-
+	border-bottom: 0.5px solid #2a2a2a; 
 }
 
+.nav p {
+	-webkit-font-smoothing: antialiased;
+	padding-top: 15px;
+	padding-right: 15px;
+	color: #ddd;
+}
+
+.nav a {
+	margin-right: 15px;
+}
+
+
+.affix {
+    top: 0;
+    width: 100%;
+	border-bottom: 0.5px solid #3a3a3a;
+	box-shadow: 0px 5px 15px #1b1b1b;
+}
+
+.affix img {
+	padding-top: 5px;
+	display: block;
+	margin: auto 750px;
+}
+
+.affix + .container-fluid {
+    padding-top: 70px;
+}
 
 
 /* 
@@ -73,6 +107,7 @@ Body
 
 
 #page-title h2 {
+	-webkit-font-smoothing: antialiased;
     margin: 0 0 10px;
     font-size: 3rem;
     line-height: 1.35rem;
@@ -94,6 +129,7 @@ Buttons
 */
 
 .btn-primary, .btn-default {
+	-webkit-font-smoothing: antialiased;
     background-color: #242424;
     border-color: #262626;
     color: #ddd;
@@ -125,6 +161,7 @@ Table
 */
 
 .table th {
+	-webkit-font-smoothing: antialiased;
 	border-top: transparent;
     background-color: #1b1b1b;
     font-size: 1.5em;
@@ -158,27 +195,41 @@ Modal
 */
 
 .modal-body {
+	-webkit-font-smoothing: antialiased;
 	border-top: transparent;
 	padding: 0.5px;
-	background-color: #1b1b1b;
+	background-color: #303030;
 }
 
 .modal-header {
-	background-color: #2a2a2a;
+	background-color: #303030;
 	border-bottom: transparent;
 }
 
 .modal-footer {
-	background-color: #2a2a2a;
+	background-color: #303030;
 	border-top: transparent;
 }
 
 .modal-title {
 	border: transparent;
+	color: #ddd
 }
 
-#residentsTable {
-	background-color: #1b1b1b;
+.residents-table {
+	background-color: #303030;
+}
+
+.residents-table td {
+	border-bottom: 0.5px solid #353535;
+}
+
+.residents-table th {
+	background-color: #303030;
+}
+
+.residents-table tbody tr:hover td {
+    background-color: #343434;
 }
 
 
@@ -190,6 +241,7 @@ Footer
 */
 
 .footer {
+	-webkit-font-smoothing: antialiased;
 	background: #1a1a1a;
     background-image: url('/static/images/footer_darth_vader.jpg');
     background-position: center;

@@ -16,8 +16,9 @@ html {
 body {
     margin: 0;
     font-family: 'Raleway', sans-serif;
-    background-color: #1b1b1b; 
+    background-color: #151515; 
     background-image: url('/static/images/404.jpg');
+    background-position-y: 200px;
     width: 80%;
     background-position-x: center;
     background-attachment: fixed;
@@ -28,11 +29,8 @@ body {
 }
 
 
-.error {
-    display: block;
+#error {
+    margin-left: 370px;
     color: #aaa;
     text-align: center;
-    height: auto;
-    overflow: hidden;
-    margin: auto;
 }

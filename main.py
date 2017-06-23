@@ -43,6 +43,10 @@ def login():
              FROM swusers \
              WHERE username = '{}'""".format(user_username)
     result = handle_database(query)
+    print(result)
+    if result == []:
+        error = 'Username not registered.'
+        return render_template('error.html', error=error)
     if user_username in result[0][0]:
         user_password = request.form['password']
         query = """SELECT p4ssword \

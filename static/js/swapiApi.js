@@ -29,7 +29,7 @@ function main() {
         var swapiResidentsLinks = residents.split(",");
 
         modal.find('.modal-title').text('Residents of ' + planetName)
-        modal.find('.modal-body').append('<table class="table table-hover table-responsive">' +
+        modal.find('.modal-body').append('<table class="table table-hover table-responsive residents-table">' +
                                         '<thead>' +
                                         '<tr>' +
                                         '<th> Name </th>' +

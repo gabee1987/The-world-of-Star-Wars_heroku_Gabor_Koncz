@@ -31,6 +31,7 @@
         <script src="/static/js/swapiApi.js" defer></script>
         <script src="/static/js/main.js" defer></script>
         <script src="/static/js/login.js" defer></script>
+        <script src="/static/js/display.js" defer></script>
         <title>The world of Star Wars</title>
     </head>
     <body>
@@ -72,10 +73,15 @@
                     <li><a href="#">Page 2</a></li>
                     <li><a href="#">Page 3</a></li>
                 </ul>
-                <p> Logged in as : {{ user_username }} </p>
                 <ul class="nav navbar-nav navbar-right">
+                    {% if user_username %}
+                        <li><p> Logged in as {{ user_username }} </p></li>
+                    {% else %}
+                        <li><p> Not logged in </p></li>
+                    {% endif %}
                     <li><a href="/register"><span class="glyphicon glyphicon-user"></span> Sign Up </a></li>
                     <li><a href="/login" id="myBtn"><span class="glyphicon glyphicon-log-in"></span> Login </a></li>
+                    <li><a href="/logout" id="myBtn"><span class="glyphicon glyphicon-log-out"></span> Logout </a></li>
                 </ul>
             </nav>
             
