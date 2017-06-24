@@ -19,6 +19,27 @@ function main() {
         event.preventDefault();
     });
 
+    $(document).on('click', '.btn-vote', function () {
+        var planetId = $(this).attr('data-planetid');
+        var votedPlanetId = JSON.stringify({votedplanet:planetId});
+        $.ajax({
+            type : 'POST',
+            url : '/vote',
+            contentType: 'application/json;charset=UTF-8',
+            data : JSON.stringify({votedPlanetId}),
+            success : function(response) {
+                alert('Successfully voted on planet!');
+                console.log(response);
+            },
+            error: function(error) {
+                alert('Failed to vote!');
+                console.log(error);
+            }
+        })
+        
+    });
+
+
     //modal trigger
     $('#popUpModal').on('show.bs.modal', function (event) {
         
@@ -79,12 +100,10 @@ function main() {
                                             '<td>' + gender + '</td>' +
                                             '</tr>')
 
-
                 function heightFormat(height) {
                     var formattedHeight = height / 100;
                     return formattedHeight + ' m';
             }
-
                 function massFormat(mass) {
                     if (mass == 'unknown') {
                         return mass;
@@ -93,12 +112,6 @@ function main() {
                     }
                 }
             }
-
-
-            
-
-
-
     });
 
     $('#popUpModal').on('hidden.bs.modal', function () {
@@ -141,7 +154,6 @@ function pageNext() {
             fillTable(swapiPlanets);
             nextPageButton.setAttribute('data-pageNumber', swapiPage);
             previousPageButton.setAttribute('data-pageNumber', swapiPage);
-            previousPageButton.style.visibility = 'visible';
 
         } else {
             alert('Error in network request: ' + reqSwapi.statusText);
@@ -186,6 +198,7 @@ function fillTable(swapiPlanets) {
 
     for (let i = 0; i < swapiPlanetsLength; i++) {
         var row = document.createElement('tr');
+        row.setAttribute('class', 'planetsRow');
         table.appendChild(row);
 
         var nameCell = document.createElement('td');
@@ -234,8 +247,24 @@ function fillTable(swapiPlanets) {
         residentsLink.setAttribute('data-planetName', swapiPlanets[i]['name']);
         residentsLink.setAttribute('data-toggle', 'modal');
         residentsLink.setAttribute('data-target', '#popUpModal');
-
         residentsCell.appendChild(residentsLink);
+
+        // Creates vote buttons
+        tableHeaders = document.getElementsByClassName('planetsHeader');
+        var voteHeader = tableHeaders[tableHeaders.length - 1];
+        if (voteHeader.innerHTML === 'Vote') {
+            var VoteCell = document.createElement('td');
+            row.appendChild(VoteCell);
+            var voteButton = document.createElement('button');
+            voteButton.setAttribute('type', 'button');
+            voteButton.innerText = 'Vote';
+            voteButton.setAttribute('class', 'btn btn-primary btn-vote');
+            voteButton.setAttribute('data-planetName', swapiPlanets[i]['name']);
+            urlString = swapiPlanets[i].url;
+            planetId = urlString.replace( /[^\d]/g, '' );
+            voteButton.setAttribute('data-planetId', planetId);
+            VoteCell.appendChild(voteButton);
+        }
         
     }
 
@@ -246,7 +275,6 @@ function fillTable(swapiPlanets) {
     function formatPopulation(population) {
         return population.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,") + ' people';
     }
-
 }
 
 

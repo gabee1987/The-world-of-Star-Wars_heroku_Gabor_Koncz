@@ -66,7 +66,7 @@ Navbar
 .navbar {
 	-webkit-font-smoothing: antialiased;
     border-radius: 0;
-	border-bottom: 0.5px solid #2a2a2a; 
+	border-bottom: 1px solid #edec51; 
 }
 
 .nav p {
@@ -80,11 +80,20 @@ Navbar
 	margin-right: 15px;
 }
 
+ .navbar .navbar-nav > .active > a, 
+ .navbar .navbar-nav > .active > a:hover, 
+ .navbar .navbar-nav > .active > a:focus {
+	 color: #edec51;
+      background: #222222;
+	  border-bottom: 2px solid #edec51;
+	  
+ }
+
 
 .affix {
     top: 0;
     width: 100%;
-	border-bottom: 0.5px solid #3a3a3a;
+	border-bottom: 0.5px solid #edec51;
 	box-shadow: 0px 5px 15px #1b1b1b;
 }
 
@@ -138,15 +147,21 @@ Buttons
 .btn-primary:hover, .btn-default:hover {
     background-color: #060606;
     border-color: #060606;
-	color: #ddd;
+	color: #edec51;
 }
 
 .btn-primary:active, .btn-primary:focus, .btn-primary:visited, .btn-default:active, .btn-default:focus, .btn-default:visited {
+	color: #edec51;
     background-color: #2a2a2a !important;
     border-color: #2a2a2a !important; 
 }
 
 .residents {
+	background-color: transparent;
+	border-color: transparent;
+}
+
+.residents:hover {
 	background-color: transparent;
 	border-color: transparent;
 }

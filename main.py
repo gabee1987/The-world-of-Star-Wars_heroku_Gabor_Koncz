@@ -1,5 +1,7 @@
 from flask import Flask, render_template, request, redirect, session, url_for, flash
 from werkzeug.security import generate_password_hash, check_password_hash
+from datetime import datetime
+import json
 from db_connect import *
 
 app = Flask(__name__)
@@ -21,7 +23,7 @@ def register_post():
     result = handle_database(query)
     print(result)
     if result == []:
-        password = generate_password_hash(user_password, method='pbkdf2:sha224', salt_length=2)
+        password = generate_password_hash(user_password)
         query = """INSERT INTO swusers (username, p4ssword) \
                     VALUES ('{}', '{}')""".format(user_username, password)
         handle_database(query)
@@ -87,12 +89,43 @@ def index():
                     'Surface water percentage',
                     'Population',
                     'Residents'
-    ]
-    planet_list = []
+                    ]
     if 'username' in session:
         user_username = session['username']
+        table_headers = [
+                    'Name',
+                    'Diameter',
+                    'Climate',
+                    'Terrain',
+                    'Surface water percentage',
+                    'Population',
+                    'Residents',
+                    'Vote'
+                    ]
         return render_template('index.html', table_headers=table_headers, user_username=user_username)
     return render_template('index.html', table_headers=table_headers)
+
+
+@app.route('/vote', methods=['POST'])
+def voting():
+    user_username = session['username']
+    json_planet_id = request.json['votedPlanetId']
+    voted_planet_id = json.loads(json_planet_id)
+    planet_id = voted_planet_id['votedplanet']
+    query = """SELECT id \
+             FROM swusers \
+             WHERE username = '{}';""".format(user_username)
+    result = handle_database(query)
+    user_id = result[0][0]
+    query_vote_check = """SELECT user_id, planet_id
+                          FROM planet_votes
+                          WHERE user_id = '{}' AND planet_id = '{}';""".format(user_id, planet_id)
+    vote_check = handle_database(query_vote_check)
+    if vote_check == []:
+        query = """INSERT INTO planet_votes (planet_id, user_id, submission_time) \
+                    VALUES ('{}', '{}', '{}');""".format(planet_id, user_id, str(datetime.now())[:-7])
+        handle_database(query)
+    return redirect(url_for('index'))
 
 
 if __name__ == '__main__':

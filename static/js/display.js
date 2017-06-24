@@ -12,4 +12,9 @@ $(document).ready(function(){
     $(window).scroll(function(i){
         $('.jumbotron').css('opacity', 1 - $(window).scrollTop() / 250);
     })
+
+    $('.nav li').on('click', function() {
+      $('.nav li').removeClass('active');
+      $(this).addClass('active');
+    });
 });
