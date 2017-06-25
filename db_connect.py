@@ -38,7 +38,7 @@ def handle_database(query):
     '''
     result = {}
     '''connect_data = "dbname={0} user={1} password={2} host={3}".format(DATABASE, USER, PASSWORD, HOST)'''
-    connection = connect_db()
+    connection = connect_db(connection)
     if connection == 'connection error':
         result = 'Connection error. Server unreachable.'
         return result
