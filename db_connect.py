@@ -38,6 +38,16 @@ def handle_database(query):
     '''
     result = {}
 
+    urllib.parse.uses_netloc.append('postgres')
+    url = urllib.parse.urlparse(os.environ.get('DATABASE_URL'))
+    connection = psycopg2.connect(
+            database=url.path[1:],
+            user=url.username,
+            password=url.password,
+            host=url.hostname,
+            port=url.port
+        )
+
     connect_data = "dbname={0} user={1} password={2} host={3} port={4}".format(url.path[1:], url.username, url.password, url.hostname, url.port)
     connection = connect_db(connect_data)
     if connection == 'connection error':
