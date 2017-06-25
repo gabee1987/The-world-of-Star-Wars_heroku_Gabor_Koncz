@@ -10,28 +10,27 @@ import urllib
 from local_config import *
 
 
-urllib.parse.uses_netloc.append('postgres')
-url = urllib.parse.urlparse(os.environ.get('DATABASE_URL'))
-connection = psycopg2.connect(
-    database=url.path[1:],
-    user=url.username,
-    password=url.password,
-    host=url.hostname,
-    port=url.port
-)
-
-
 def connect_db(connect_data):
     '''
         Set the connection with the database.
     '''
     conn = None
     try:
-        conn = psycopg2.connect(connect_data)
+        urllib.parse.uses_netloc.append('postgres')
+        url = urllib.parse.urlparse(os.environ.get('DATABASE_URL'))
+        connection = psycopg2.connect(
+            database=url.path[1:],
+            user=url.username,
+            password=url.password,
+            host=url.hostname,
+            port=url.port
+        )
+
+        '''conn = psycopg2.connect(connect_data)
         return conn
     except Exception as error:
         print(error)
-        return 'connection error'
+        return 'connection error''''
 
 
 def handle_database(query):
