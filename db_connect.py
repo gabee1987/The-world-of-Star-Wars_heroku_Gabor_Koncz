@@ -14,7 +14,7 @@ def connect_db(connect_data):
     '''
         Set the connection with the database.
     '''
-    conn = None
+    connection = None
     try:
         urllib.parse.uses_netloc.append('postgres')
         url = urllib.parse.urlparse(os.environ.get('DATABASE_URL'))
@@ -25,12 +25,11 @@ def connect_db(connect_data):
             host=url.hostname,
             port=url.port
         )
-
-        '''conn = psycopg2.connect(connect_data)
-        return conn
+        '''conn = psycopg2.connect(connect_data)'''
+        return connection
     except Exception as error:
         print(error)
-        return 'connection error''''
+        return 'connection error'
 
 
 def handle_database(query):
