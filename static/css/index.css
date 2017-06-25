@@ -83,10 +83,10 @@ Navbar
  .navbar .navbar-nav > .active > a, 
  .navbar .navbar-nav > .active > a:hover, 
  .navbar .navbar-nav > .active > a:focus {
-	 color: #edec51;
-      background: #222222;
-	  border-bottom: 2px solid #edec51;
-	  
+	color: #edec51;
+    background: #222222;
+	border-bottom: 2px solid #edec51;
+
  }
 
 
@@ -144,7 +144,7 @@ Buttons
     color: #ddd;
 }
 
-.btn-primary:hover, .btn-default:hover {
+.btn-primary:hover, .vote:hover, .btn-default:hover {
     background-color: #060606;
     border-color: #060606;
 	color: #edec51;
@@ -162,12 +162,22 @@ Buttons
 }
 
 .residents:hover {
+	color: #edec51;
 	background-color: transparent;
 	border-color: transparent;
 }
 
- 
+.vote {
+	background-color: transparent;
+	border-color: transparent;
+}
 
+/*
+.vote:hover {
+	color: #edec51;
+	background-color: transparent;
+	border-color: transparent;
+*/
 
 /* 
 ==========================================================================
@@ -295,6 +305,10 @@ Footer
 }
 .footer a {
 	color: #858a8d;
+}
+
+.footer a:hover {
+	color: #edec51;
 }
 
 /*Social buttons*/

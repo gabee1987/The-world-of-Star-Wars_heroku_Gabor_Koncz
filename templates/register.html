@@ -13,6 +13,8 @@
             crossorigin="anonymous">
         <!-- Own CSS -->
         <link rel="stylesheet" href="/static/css/login.css">
+        <link rel="stylesheet" href="/static/css/form-elements.css">
+        <link rel="stylesheet" href="/static/css/login_style.css">
         <!-- Google fonts -->
         <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
         <!-- JQuery -->
@@ -26,26 +28,51 @@
             integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
             crossorigin="anonymous"></script>
         <script src="https://use.fontawesome.com/a8063379b9.js"></script>
+        <!-- Own Javascript -->
+        <script src="/static/js/passCheck.js" defer></script>
     </head>
     <body>
-        <div class="container">
-
-            <form action="/register_post" method="POST" class="form-signin">
-                <h2 class="form-signin-heading">Register</h2>
-                
-                <label for="inputEmail" class="sr-only">Email address</label>
-                <input type="text" id="username" name="username" class="form-control" placeholder="Username" required autofocus="">
-
-                <label for="inputPassword" class="sr-only">Password</label>
-                <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required>
-                <label for="inputPasswordVerify" class="sr-only">Password</label>
-                <input type="password" name="passwordVerify" id="inputPasswordVerify" class="form-control" placeholder="Verify Password" required>
-                
-                <button class="btn btn-lg btn-primary btn-block" type="submit" name="submit" id="submit">Register</button>
-            </form>
-
-        </div> <!-- /container -->
-    
+        
+        <!-- Top content -->
+        <div class="top-content">
+        	
+            <div class="inner-bg">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-8 col-sm-offset-2 text">
+                            <h1><strong>The world of Star Wars</strong> Sign up </h1>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6 col-sm-offset-3 form-box">
+                        	<div class="form-top">
+                        		<div class="form-top-left">
+                        			<h3>Sign up to the site</h3>
+                            		<p>Enter your username and password to sign up:</p>
+                        		</div>
+                        		<div class="form-top-right">
+                        			<i class="fa fa-key"></i>
+                        		</div>
+                            </div>
+                            <div class="form-bottom">
+			                    <form role="form" action="" method="post" class="login-form">
+			                    	<div class="form-group">
+			                    		<label class="sr-only" for="form-username">Username</label>
+			                        	<input type="text" name="form-username" placeholder="Username..." class="form-username form-control" id="form-username">
+			                        </div>
+			                        <div class="form-group">
+			                        	<label class="sr-only" for="form-password">Password</label>
+			                        	<input type="password" name="form-password" placeholder="Password..." class="form-password form-control" id="form-password">
+			                        </div>
+			                        <button type="submit" class="btn">Sign up!</button>
+			                    </form>
+		                    </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
 
     </body>
 </html>

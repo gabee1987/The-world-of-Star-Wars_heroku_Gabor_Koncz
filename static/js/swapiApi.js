@@ -29,7 +29,6 @@ function main() {
             data : JSON.stringify({votedPlanetId}),
             success : function(response) {
                 alert('Successfully voted on planet!');
-                console.log(response);
             },
             error: function(error) {
                 alert('Failed to vote!');
@@ -258,7 +257,7 @@ function fillTable(swapiPlanets) {
             var voteButton = document.createElement('button');
             voteButton.setAttribute('type', 'button');
             voteButton.innerText = 'Vote';
-            voteButton.setAttribute('class', 'btn btn-primary btn-vote');
+            voteButton.setAttribute('class', 'btn btn-primary vote');
             voteButton.setAttribute('data-planetName', swapiPlanets[i]['name']);
             urlString = swapiPlanets[i].url;
             planetId = urlString.replace( /[^\d]/g, '' );

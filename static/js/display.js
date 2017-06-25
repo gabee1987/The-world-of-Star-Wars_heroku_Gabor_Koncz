@@ -1,3 +1,7 @@
+/* The world of Star Wars assignment's display functions 
+    by Gabor Koncz */
+
+
 $(document).ready(function(){
     $('.navbar').affix({offset: {top: 312} }); 
     $('.navbar').on('affix.bs.affix', function(){
