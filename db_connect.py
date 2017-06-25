@@ -21,7 +21,7 @@ connection = psycopg2.connect(
 )
 
 
-def connect_db(connect_data):
+def connect_db(connection):
     '''
         Set the connection with the database.
     '''
