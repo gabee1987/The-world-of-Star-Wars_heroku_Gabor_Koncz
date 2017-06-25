@@ -7,7 +7,7 @@
 import os
 import psycopg2
 import urllib
-from local_config import *
+'''from local_config import *'''
 
 
 def connect_db(connect_data):
@@ -37,8 +37,8 @@ def handle_database(query):
         Handle querys from database.
     '''
     result = {}
-    connect_data = "dbname={0} user={1} password={2} host={3}".format(DATABASE, USER, PASSWORD, HOST)
-    connection = connect_db(connect_data)
+    '''connect_data = "dbname={0} user={1} password={2} host={3}".format(DATABASE, USER, PASSWORD, HOST)'''
+    connection = connect_db()
     if connection == 'connection error':
         result = 'Connection error. Server unreachable.'
         return result
