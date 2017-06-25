@@ -115,7 +115,6 @@ def voting():
              WHERE username = '{}';""".format(user_username)
     result = handle_database(query)
     user_id = result[0][0]
-    print(user_id)
     query_vote_check = """SELECT user_id, planet_id
                           FROM planet_votes
                           WHERE user_id = '{}' AND planet_id = '{}';""".format(user_id, planet_id)
@@ -134,9 +133,7 @@ def statistics():
                 GROUP BY planet_id \
                 ORDER BY planet_id;"""
     result = handle_database(query)
-    print(result)
     json_statistics = jsonify(result)
-    print(json_statistics)
     return json_statistics
 
 
