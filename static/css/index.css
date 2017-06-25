@@ -32,7 +32,7 @@ Page header
     height: 350px;
     -webkit-font-smoothing: antialiased;
     background-image: url('/static/images/header_bg.jpeg');
-    background-position-x: center;
+    background-position-x: -200px;
     background-attachment: fixed;
     margin: -20px auto;
     padding: 1.5%;
@@ -46,7 +46,8 @@ Page header
     max-width: 350px;
     height: 100%;
     max-height: 130px;
-    margin: 50px auto;
+	margin-left: 600px;
+    margin: 70px auto;
     box-sizing: border-box;
     background-size: contain;
 }
@@ -69,6 +70,10 @@ Navbar
 	border-bottom: 1px solid #edec51; 
 }
 
+.navbar-inverse .navbar-header > a:hover, .navbar-header > a:focus {
+    color: #edec51;
+}
+
 .nav p {
 	-webkit-font-smoothing: antialiased;
 	padding-top: 15px;
@@ -78,6 +83,10 @@ Navbar
 
 .nav a {
 	margin-right: 15px;
+}
+
+.navbar-inverse .navbar-nav > li > a:hover, .navbar-inverse .navbar-nav > li > a:focus {
+    color: #edec51;
 }
 
  .navbar .navbar-nav > .active > a, 
@@ -238,7 +247,7 @@ Modal
 
 .modal-title {
 	border: transparent;
-	color: #ddd
+	color: #edec51;
 }
 
 .residents-table {
@@ -251,10 +260,38 @@ Modal
 
 .residents-table th {
 	background-color: #303030;
+	border-bottom: #edec51;
 }
 
 .residents-table tbody tr:hover td {
     background-color: #343434;
+}
+
+.residents-table thead>tr>th {
+	vertical-align: bottom;
+	border-bottom: 2px solid #edec51;
+}
+
+.statistics-table {
+	background-color: #303030;
+}
+
+.statistics-table td {
+	border-bottom: 0.5px solid #353535;
+}
+
+.statistics-table th {
+	background-color: #303030;
+	border-bottom: #edec51;
+}
+
+.statistics-table tbody tr:hover td {
+    background-color: #343434;
+}
+
+.statistics-table thead>tr>th {
+	vertical-align: bottom;
+	border-bottom: 2px solid #edec51;
 }
 
 

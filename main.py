@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, session, url_for, flash
+from flask import Flask, render_template, request, redirect, session, url_for, flash, jsonify
 from werkzeug.security import generate_password_hash, check_password_hash
 from datetime import datetime
 import json
@@ -21,7 +21,6 @@ def register_post():
              FROM swusers \
              WHERE username = '{}'""".format(user_username)
     result = handle_database(query)
-    print(result)
     if result == []:
         password = generate_password_hash(user_password)
         query = """INSERT INTO swusers (username, p4ssword) \
@@ -45,7 +44,6 @@ def login():
              FROM swusers \
              WHERE username = '{}'""".format(user_username)
     result = handle_database(query)
-    print(result)
     if result == []:
         error = 'Username not registered.'
         return render_template('error.html', error=error)
@@ -117,6 +115,7 @@ def voting():
              WHERE username = '{}';""".format(user_username)
     result = handle_database(query)
     user_id = result[0][0]
+    print(user_id)
     query_vote_check = """SELECT user_id, planet_id
                           FROM planet_votes
                           WHERE user_id = '{}' AND planet_id = '{}';""".format(user_id, planet_id)
@@ -127,6 +126,23 @@ def voting():
         handle_database(query)
     return redirect(url_for('index'))
 
+
+@app.route('/statistics', methods=['POST'])
+def statistics():
+    query = """SELECT planet_id, COUNT(planet_id) \
+                FROM planet_votes \
+                GROUP BY planet_id \
+                ORDER BY planet_id;"""
+    result = handle_database(query)
+    print(result)
+    json_statistics = jsonify(result)
+    print(json_statistics)
+    return json_statistics
+
+
+@app.route('/error')
+def error():
+    return render_template('error.html', error=error)
 
 if __name__ == '__main__':
     app.run(debug=True)

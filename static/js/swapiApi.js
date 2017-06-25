@@ -19,7 +19,8 @@ function main() {
         event.preventDefault();
     });
 
-    $(document).on('click', '.btn-vote', function () {
+    
+    $(document).on('click', '.vote', function () {
         var planetId = $(this).attr('data-planetid');
         var votedPlanetId = JSON.stringify({votedplanet:planetId});
         $.ajax({
@@ -39,8 +40,8 @@ function main() {
     });
 
 
-    //modal trigger
-    $('#popUpModal').on('show.bs.modal', function (event) {
+    //modal trigger for residents
+    $('#residentsModal').on('show.bs.modal', function (event) {
         
         var button = $(event.relatedTarget);
         var planetName = button.data('planetname');
@@ -113,9 +114,73 @@ function main() {
             }
     });
 
-    $('#popUpModal').on('hidden.bs.modal', function () {
+    $('#residentsModal').on('hidden.bs.modal', function () {
         $(this).find('.modal-body').text('');
-})
+    });
+
+    function handleStatistics(planetId, numberOfVotes) {
+        $.ajax({
+        type: 'GET',
+        dataType: 'json',
+        url: 'http://swapi.co/api/planets/' + planetId,
+        success: function(response) {
+            var planetName = response.name;
+            displayStatistics(planetName, numberOfVotes)
+        },
+        error: function() {
+            alert('Error loading planets data!');
+            } 
+        });
+    };
+
+    function createSatisticsTable() {
+        var modal = $('#statisticsModal');
+        modal.find('.modal-title').text('Planet votes')
+        modal.find('.modal-body').append('<table class="table table-hover table-responsive statistics-table">' +
+                                '<thead>' +
+                                '<tr>' +
+                                '<th> Planet name </th>' +
+                                '<th> Votes </th>' +
+                                '</tr>' +
+                                '</thead>' +
+                                '<tbody id="statisticsTable">' +
+                                '</tbody' +
+                                '</table>');
+    }
+
+    function displayStatistics(planetName, numberOfVotes) { 
+        $('#statisticsTable').append('<tr>' +
+                                    '<td>' + planetName + '</td>' +
+                                    '<td>' + numberOfVotes + '</td>' +
+                                    '</tr>');                    
+    }
+
+
+
+    $('#statisticsModal').on('show.bs.modal', function(event) {
+        var button = $(event.relatedTarget);
+        var modal = $(this);
+        $.ajax({
+                type: 'POST',
+                url: '/statistics',
+                dataType: 'json',
+                success: function(response) {
+                    createSatisticsTable();
+                    for (property of response) {
+                        handleStatistics(property[0], property[1]);
+                    }
+                },
+                error: function() {
+                    alert('Error in network request!');
+                } 
+            });
+        });
+
+    $('#statisticsModal').on('hidden.bs.modal', function () {
+        $(this).find('.modal-body').text('');
+    });
+
+
 }
 
 function displayPlanets() {
@@ -245,7 +310,7 @@ function fillTable(swapiPlanets) {
         residentsLink.setAttribute('class', 'btn btn-primary residents');
         residentsLink.setAttribute('data-planetName', swapiPlanets[i]['name']);
         residentsLink.setAttribute('data-toggle', 'modal');
-        residentsLink.setAttribute('data-target', '#popUpModal');
+        residentsLink.setAttribute('data-target', '#residentsModal');
         residentsCell.appendChild(residentsLink);
 
         // Creates vote buttons
@@ -274,6 +339,7 @@ function fillTable(swapiPlanets) {
     function formatPopulation(population) {
         return population.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,") + ' people';
     }
+
 }
 
 

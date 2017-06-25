@@ -13,7 +13,6 @@
             crossorigin="anonymous">
         <!-- Own CSS -->
         <link rel="stylesheet" href="/static/css/index.css">
-        <link rel="stylesheet" href="/static/css/login.css">
         <!-- Google fonts -->
         <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
         <!-- JQuery -->
@@ -37,7 +36,27 @@
     <body>
 
         <!-- Modal for residents -->
-        <div class="modal fade" id="popUpModal" tabindex="-1" role="dialog" aria-labelledby="popUpModal">
+        <div class="modal fade" id="residentsModal" tabindex="-1" role="dialog" aria-labelledby="residentsModal">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="ModalLabel"><!-- Modal title comes here --></h4>
+                    </div>
+                    <div class="modal-body">
+
+                        <!-- Residents table comes here -->
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal for statistics -->
+        <div class="modal fade" id="statisticsModal" tabindex="-1" role="dialog" aria-labelledby="statisticsModal">
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -97,8 +116,9 @@
             </div>
             <br>
             <!-- Page swap buttons -->
-            <button id="previousPage" type="button" class="btn btn-primary" data-pageNumber="1">Previous</button>
-            <button id="nextPage" type="button" class="btn btn-primary" data-pageNumber="1">Next</button>
+            <button id="previousPage" type="button" class="btn btn-primary" data-pageNumber="1"> Previous </button>
+            <button id="nextPage" type="button" class="btn btn-primary" data-pageNumber="1"> Next </button>
+            <button id="statistics" type="button" class="btn btn-primary" data-toggle="modal" data-target="#statisticsModal"> Statistics </button>
             <!-- Table -->
                 <table id="swapiPlanetsTable" class="table table-hover table-responsive">
                     <thead>
