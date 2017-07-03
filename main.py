@@ -13,7 +13,7 @@ def display_register():
     return render_template('register.html')
 
 
-@app.route('/register_post', methods=['POST'])
+@app.route('/register-post', methods=['POST'])
 def register_post():
     user_username = request.form['username']
     user_password = request.form['password']
